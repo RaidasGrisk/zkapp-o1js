@@ -55,7 +55,7 @@ console.log(`Found deployed zkapp, with state ${value.toBase58()}`);
 let transaction = await Mina.transaction(
   { feePayerKey, fee: 100_000_000 },
   () => {
-    zkapp.update(
+    zkapp.giveAnswer(
       Field(7),
       PublicKey.fromBase58(
         'B62qir1gS3RFMWqtassVaw8DZm5fM9Gp5dLP5mFGapT8xj6qjVRmaJ3'

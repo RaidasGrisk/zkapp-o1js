@@ -1,41 +1,33 @@
 import {
   state,
   State,
-  DeployArgs,
   method,
   PublicKey,
   Field,
   SmartContract,
-  Poseidon,
 } from 'snarkyjs';
 
 export { SimpleZkapp_ };
 
-// a very simple SmartContract
+// here's the idea: we have a math question: 10 / 2 + 2
+// if you give a correct answer, the state will update
+// and set value var to the publicKey a caller provided
+
 class SimpleZkapp_ extends SmartContract {
   @state(PublicKey) value = State<PublicKey>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-  }
+  @method giveAnswer(answer: Field, value: PublicKey) {
+    // below a simple math question: 10 / 2 + 2
+    // lets check if given answer is correct
+    answer.assertEquals(Field(10).div(2).add(2));
 
-  @method update(answer: Field, value: PublicKey) {
-    // So here's a simple math question 10 / 2 + 2
     // whoever manages to solve this and knows the answer
-    // can prove it withought actually sharing the answer.
+    // can prove this withought actually sharing the answer
+    // i.e the answer you provide, never leaves your local env
 
-    // Also, if the computation costs required to check / find
+    // also, if the computation costs required to check / find
     // the answer was high - this lets us do all the compute
-    // on the client side, and after simply send the proof!
-
-    // Lets check if answer is correct.
-    // I know, I know, the equation is hard to solve,
-    // and I have to obfuscate the answer, so here goes:
-    let hash_ = Field.fromString(
-      '6578875638485601876110040807563059226527821355810144956664181662741507347263'
-    );
-    let hash = Poseidon.hash([answer]);
-    hash.assertEquals(hash_);
+    // on the client side, and then simply send the proof!
 
     // if assertion passes, update state
     let value_ = this.value.get();

@@ -33,7 +33,7 @@ if (tryInteracting) {
 
   console.log(`Update state`);
   let tx = await Mina.transaction(account, () => {
-    zkapp.update(Field(7), account.toPublicKey());
+    zkapp.giveAnswer(Field(7), account.toPublicKey());
   });
   // fill in the proof - this can take a while...
   console.log('Creating an execution proof...');
@@ -49,7 +49,7 @@ if (tryInteracting) {
   console.log(`Update state bad`);
   try {
     let tx = await Mina.transaction(account, () => {
-      zkapp.update(Field(6), zkappKey.toPublicKey());
+      zkapp.giveAnswer(Field(6), zkappKey.toPublicKey());
     });
     // fill in the proof - this can take a while...
     console.log('Creating an execution proof...');
