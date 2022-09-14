@@ -8,6 +8,7 @@ import {
   shutdown,
   fetchAccount,
   setGraphqlEndpoint,
+  // Poseidon,
 } from 'snarkyjs';
 
 await isReady;
@@ -49,8 +50,8 @@ console.log('account', JSON.stringify(account, null, 2));
 console.log('error', JSON.stringify(error, null, 2));
 let zkapp = new SimpleZkapp_(zkappAddress);
 
-let y = zkapp.y.get();
-console.log(`Found deployed zkapp, with state ${y}`);
+let value = zkapp.value.get();
+console.log(`Found deployed zkapp, with state ${value.toBase58()}`);
 let transaction = await Mina.transaction(
   { feePayerKey, fee: 100_000_000 },
   () => {

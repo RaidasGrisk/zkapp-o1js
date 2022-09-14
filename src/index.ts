@@ -25,45 +25,46 @@ let tx = await Mina.transaction(account, () => {
 // zkapp.sign(zkappKey);
 await tx.send().wait();
 
-let tryInteracting = false;
+let tryInteracting = true;
 if (tryInteracting) {
   // https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/hello_world/run.ts
   // let initialState = await Mina.getAccount(zkappAddress);
-  console.log('Initial State', zkapp.y.get().toBase58());
+  console.log('Initial State', zkapp.value.get().toBase58());
 
   console.log(`Update state`);
-  let tx_ = await Mina.transaction(account, () => {
+  let tx = await Mina.transaction(account, () => {
     zkapp.update(Field(7), account.toPublicKey());
   });
   // fill in the proof - this can take a while...
   console.log('Creating an execution proof...');
-  await tx_.prove();
+  await tx.prove();
 
   // send the transaction to the graphql endpoint
   console.log('Sending the transaction...');
-  await tx_.send().wait();
+  await tx.send().wait();
 
-  console.log('Updated State', zkapp.y.get().toBase58());
+  console.log('Updated State', zkapp.value.get().toBase58());
 
   // okay, so lets send something that does not satisfy the update condition
   console.log(`Update state bad`);
   try {
-    let tx__ = await Mina.transaction(account, () => {
+    let tx = await Mina.transaction(account, () => {
       zkapp.update(Field(6), zkappKey.toPublicKey());
     });
     // fill in the proof - this can take a while...
     console.log('Creating an execution proof...');
-    await tx__.prove();
+    await tx.prove();
 
     // send the transaction to the graphql endpoint
     console.log('Sending the transaction...');
-    await tx__.send().wait();
+    await tx.send().wait();
 
-    console.log('Updated State', zkapp.y.get().toBase58());
+    console.log('Updated State', zkapp.value.get().toBase58());
   } catch (error) {
     console.log('ERROR');
     console.error(error);
   }
 }
 
-shutdown();
+console.log('Exiting...');
+await shutdown();
