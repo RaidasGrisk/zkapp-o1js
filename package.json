@@ -45,5 +45,8 @@
   },
   "peerDependencies": {
     "snarkyjs": "^0.5.0"
+  },
+  "dependencies": {
+    "zkapp-cli": "^0.4.15"
   }
 }

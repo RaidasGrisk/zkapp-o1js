@@ -25,9 +25,9 @@ class SimpleZkapp_ extends SmartContract {
     // can prove this withought actually sharing the answer
     // i.e the answer you provide, never leaves your local env
 
-    // also, if the computation costs required to check / find
-    // the answer was high - this lets us do all the compute
-    // on the client side, and then simply send the proof!
+    // imagine if the computation cost required to find / check
+    // the answer was high. zkapp let us do all the compute
+    // on the client side, and then send the proof over to the network!
 
     // if assertion passes, update state
     let value_ = this.value.get();
