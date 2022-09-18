@@ -1,5 +1,16 @@
+// commenting all this out, beacuase as pf snarkyjs 0.5.4 > 0.6.0
+// Module '"snarkyjs"' has no exported member 'Party'. Not sure
+// where to find it, because the docs are not updated?
+
 import { SimpleZkapp_ } from './zkapp.js';
-import { isReady, Mina, PrivateKey, shutdown, Party, Field } from 'snarkyjs';
+import {
+  isReady,
+  Mina,
+  PrivateKey,
+  shutdown,
+  AccountUpdate,
+  Field,
+} from 'snarkyjs';
 
 // setup
 await isReady;
@@ -13,13 +24,13 @@ let zkappAddress = zkappKey.toPublicKey();
 // have to compile if using proofs?
 // https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_and_counter_zkapp.ts
 console.log('Compiling smart contract...');
-let { verificationKey } = await SimpleZkapp_.compile(zkappAddress);
+let { verificationKey } = await SimpleZkapp_.compile();
 
 let zkapp = new SimpleZkapp_(zkappAddress);
 
 console.log(`Deploying zkapp for public key ${zkappAddress.toBase58()}.`);
 let tx = await Mina.transaction(account, () => {
-  Party.fundNewAccount(account);
+  AccountUpdate.fundNewAccount(account);
   zkapp.deploy({ zkappKey, verificationKey });
 });
 // zkapp.sign(zkappKey);

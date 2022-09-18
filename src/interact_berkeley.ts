@@ -22,12 +22,12 @@ let Berkeley = Mina.BerkeleyQANet(graphqlEndpoint);
 Mina.setActiveInstance(Berkeley);
 
 // a random account
-const private_key = 'EKEcetoxQUqfjToHsWftd7h4Xzqea56tSisK2nMyCq1uV5unboS8';
+const private_key = 'EKEGgnxvJZCAdoWWVpP2xdXpEMnYcbiWs7Z3sma3xSfnyY2tzt4C';
 // const public_key = "B62qir1gS3RFMWqtassVaw8DZm5fM9Gp5dLP5mFGapT8xj6qjVRmaJ3"
 
 // zk app account
 const zkappAddress = PublicKey.fromBase58(
-  'B62qqLLoLdsiajBDxNQEe2HzFt4QnmooE5xHqk12eNL6qex73TRmEi9'
+  'B62qoD7GZfMURQSpEF98HBTCuuchzgiw43dNsZXanMg8w6AYKLCuVfc'
 );
 
 // to use this test, change this private key to an account which has enough MINA to pay fees
@@ -41,7 +41,7 @@ let feePayerKey = PrivateKey.fromBase58(private_key);
 // compile the SmartContract to get the verification key (if deploying) or cache the provers (if updating)
 // this can take a while...
 console.log('Compiling smart contract...');
-await SimpleZkapp_.compile(zkappAddress);
+await SimpleZkapp_.compile();
 
 // check if the zkapp is already deployed, based on whether the account exists and its first zkapp state is != 0
 console.log('try fetch zkapp account');
@@ -58,7 +58,7 @@ let transaction = await Mina.transaction(
     zkapp.giveAnswer(
       Field(7),
       PublicKey.fromBase58(
-        'B62qir1gS3RFMWqtassVaw8DZm5fM9Gp5dLP5mFGapT8xj6qjVRmaJ3'
+        'B62qqBAUo5smz1whfdRjniFUnPv1V4Z1Y2VFPv16Zp1Z4497wmXmBgR'
       )
     );
   }
