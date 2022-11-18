@@ -14,6 +14,13 @@ import {
 
 // setup
 await isReady;
+
+for (let i = 0; i < 5; i++) {
+  let privateKey = PrivateKey.random();
+  let publicKey = privateKey.toPublicKey();
+  console.log(publicKey.toBase58(), privateKey.toBase58());
+}
+
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 
@@ -34,7 +41,7 @@ let tx = await Mina.transaction(account, () => {
   zkapp.deploy({ zkappKey, verificationKey });
 });
 // zkapp.sign(zkappKey);
-await tx.send().wait();
+await tx.send();
 
 let tryInteracting = true;
 if (tryInteracting) {
@@ -52,7 +59,7 @@ if (tryInteracting) {
 
   // send the transaction to the graphql endpoint
   console.log('Sending the transaction...');
-  await tx.send().wait();
+  await tx.send();
 
   console.log('Updated State', zkapp.value.get().toBase58());
 
@@ -68,7 +75,7 @@ if (tryInteracting) {
 
     // send the transaction to the graphql endpoint
     console.log('Sending the transaction...');
-    await tx.send().wait();
+    await tx.send();
 
     console.log('Updated State', zkapp.value.get().toBase58());
   } catch (error) {

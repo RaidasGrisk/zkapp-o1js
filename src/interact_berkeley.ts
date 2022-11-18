@@ -22,12 +22,12 @@ let Berkeley = Mina.BerkeleyQANet(graphqlEndpoint);
 Mina.setActiveInstance(Berkeley);
 
 // a random account
-const private_key = 'EKEGgnxvJZCAdoWWVpP2xdXpEMnYcbiWs7Z3sma3xSfnyY2tzt4C';
+const private_key = 'EKFcPijNKKrhpUUSxFZQBnhm8Xp5BemwQ7ZVtCVAEA5zFQfGQ4cG';
 // const public_key = "B62qir1gS3RFMWqtassVaw8DZm5fM9Gp5dLP5mFGapT8xj6qjVRmaJ3"
 
 // zk app account
 const zkappAddress = PublicKey.fromBase58(
-  'B62qoD7GZfMURQSpEF98HBTCuuchzgiw43dNsZXanMg8w6AYKLCuVfc'
+  'B62qnTUHoe9fTB5YMk3J1bcKXcWQEdseJzkhp9pWM994PTryBPAZZ23'
 );
 
 // to use this test, change this private key to an account which has enough MINA to pay fees
@@ -58,7 +58,7 @@ let transaction = await Mina.transaction(
     zkapp.giveAnswer(
       Field(7),
       PublicKey.fromBase58(
-        'B62qqBAUo5smz1whfdRjniFUnPv1V4Z1Y2VFPv16Zp1Z4497wmXmBgR'
+        'B62qnTUHoe9fTB5YMk3J1bcKXcWQEdseJzkhp9pWM994PTryBPAZZ23'
       )
     );
   }
@@ -73,6 +73,6 @@ await transaction.prove();
 
 // send the transaction to the graphql endpoint
 console.log('Sending the transaction...');
-await transaction.send().wait();
+await transaction.send();
 
 await shutdown();
