@@ -7,13 +7,11 @@ import {
   SmartContract,
 } from 'o1js';
 
-export { SimpleZkapp_ };
-
 // here's the idea: we have a math question: 10 / 2 + 2
 // if you give a correct answer, the state will update
 // and set value var to the publicKey a caller provided
 
-class SimpleZkapp_ extends SmartContract {
+class SimpleZkapp extends SmartContract {
   @state(PublicKey) value = State<PublicKey>();
 
   @method giveAnswer(answer: Field, value: PublicKey) {
@@ -35,3 +33,5 @@ class SimpleZkapp_ extends SmartContract {
     this.value.set(value);
   }
 }
+
+export { SimpleZkapp };

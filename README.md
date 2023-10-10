@@ -1,4 +1,4 @@
-# Mina zkApp: Zkapp Snarkyjs
+# Mina zkApp: Zkapp
 
 This template uses TypeScript.
 

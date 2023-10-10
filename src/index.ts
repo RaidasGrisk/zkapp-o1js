@@ -1,2 +1,2 @@
-import { SimpleZkapp_ } from './zkapp.js';
-export { SimpleZkapp_ };
+import { SimpleZkapp } from './zkapp.js';
+export { SimpleZkapp };
