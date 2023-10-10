@@ -10,7 +10,7 @@ import {
   shutdown,
   AccountUpdate,
   Field,
-} from 'snarkyjs';
+} from 'o1js';
 
 // setup
 await isReady;

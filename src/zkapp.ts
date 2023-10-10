@@ -5,7 +5,7 @@ import {
   PublicKey,
   Field,
   SmartContract,
-} from 'snarkyjs';
+} from 'o1js';
 
 export { SimpleZkapp_ };
 

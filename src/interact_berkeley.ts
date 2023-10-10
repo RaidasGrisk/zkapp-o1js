@@ -9,7 +9,7 @@ import {
   fetchAccount,
   setGraphqlEndpoint,
   // Poseidon,
-} from 'snarkyjs';
+} from 'o1js';
 
 await isReady;
 
