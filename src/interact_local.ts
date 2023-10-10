@@ -4,23 +4,13 @@
 
 import { SimpleZkapp_ } from './zkapp.js';
 import {
-  isReady,
   Mina,
   PrivateKey,
-  shutdown,
   AccountUpdate,
   Field,
 } from 'o1js';
 
 // setup
-await isReady;
-
-for (let i = 0; i < 5; i++) {
-  let privateKey = PrivateKey.random();
-  let publicKey = privateKey.toPublicKey();
-  console.log(publicKey.toBase58(), privateKey.toBase58());
-}
-
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 
@@ -83,6 +73,3 @@ if (tryInteracting) {
     console.error(error);
   }
 }
-
-console.log('Exiting...');
-await shutdown();

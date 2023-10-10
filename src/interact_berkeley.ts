@@ -4,14 +4,10 @@ import {
   PrivateKey,
   PublicKey,
   Mina,
-  isReady,
-  shutdown,
   fetchAccount,
   setGraphqlEndpoint,
   // Poseidon,
 } from 'o1js';
-
-await isReady;
 
 const graphqlEndpoint = 'https://proxy.berkeley.minaexplorer.com/graphql';
 setGraphqlEndpoint(graphqlEndpoint);
@@ -74,5 +70,3 @@ await transaction.prove();
 // send the transaction to the graphql endpoint
 console.log('Sending the transaction...');
 await transaction.send();
-
-await shutdown();
