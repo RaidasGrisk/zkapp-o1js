@@ -1,5 +1,5 @@
 /**
- * This script can be used to interact with the Add contract, after deploying it.
+ * This script can be used to interact with the SimpleZkapp contract, after deploying it.
  *
  * We call the giveAnswer() method on the contract, create a proof and send it to the chain.
  * The endpoint that we interact with is read from your config.json.
@@ -12,7 +12,7 @@
  * Build the project: `$ npm run build`
  * Run with node:     `$ node build/src/interact.js <deployAlias>`.
  */
-import { Mina, PrivateKey, Field } from 'o1js';
+import { Mina, PrivateKey, Field, fetchAccount } from 'o1js';
 import fs from 'fs/promises';
 import { SimpleZkapp } from './zkapp.js';
 
@@ -59,6 +59,9 @@ Mina.setActiveInstance(Network);
 let feepayerAddress = feepayerKey.toPublicKey();
 let zkAppAddress = zkAppKey.toPublicKey();
 let zkApp = new SimpleZkapp(zkAppAddress);
+
+let { account, error } = await fetchAccount({ publicKey: zkAppAddress });
+console.log('zkApp state value: ', zkApp.value.get())
 
 let sentTx;
 // compile the contract to create prover keys

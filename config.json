@@ -6,7 +6,8 @@
       "keyPath": "keys/berkeley.json",
       "feepayerKeyPath": "/home/raidas/.cache/zkapp-cli/keys/berkeley_alias.json",
       "feepayerAlias": "berkeley_alias",
-      "fee": "0.1"
+      "fee": "0.1",
+      "smartContract": "SimpleZkapp"
     }
   }
 }
